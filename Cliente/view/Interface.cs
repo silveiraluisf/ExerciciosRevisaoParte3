@@ -97,12 +97,12 @@ namespace Cliente.view
         {
             Console.WriteLine("---- CLIENTE CADASTRADO ----");
             Console.WriteLine("");
-            Console.WriteLine($"Nome: {c.Name}");
+            Console.WriteLine($"Nome: {c.Nome}");
             Console.WriteLine($"CPF: {c.CPF.ToString("00000000000")}");
-            Console.WriteLine($"Data de nascimento: {c.BirthDate.ToString("dd/MM/yyyy")}");
-            Console.WriteLine($"Renda mensal: {c.MonthlyIncome}");
-            Console.WriteLine($"Estado civil: {c.MaritalStatus}");
-            Console.WriteLine($"Número de dependentes: {c.NumberOfDependents}");
+            Console.WriteLine($"Data de nascimento: {c.Dt_Nascimento.ToString("dd/MM/yyyy")}");
+            Console.WriteLine($"Renda mensal: {c.Renda_Mensal}");
+            Console.WriteLine($"Estado civil: {c.Estado_Civil}");
+            Console.WriteLine($"Número de dependentes: {c.Dependentes}");
 
         }
 

@@ -5,7 +5,6 @@ namespace Cliente.controller
 {
     public class ClientController
     {
-
         public void AddClientName(Interface a)
         {
             a.GetName();
@@ -57,7 +56,7 @@ namespace Cliente.controller
                     NameValidate(a, c);
                     break;
                 case >= 5:
-                    c.Name = name;
+                    c.Nome = name;
                     break;
             }
         }
@@ -98,11 +97,11 @@ namespace Cliente.controller
             bool parseSuccess = DateTime.TryParse(inputDate, out outputDate);
             if (parseSuccess)
             {
-                c.BirthDate = Convert.ToDateTime(outputDate);
+                c.Dt_Nascimento = Convert.ToDateTime(outputDate);
                 TimeIntervalController timeInterval = new(outputDate, now);
                 if (timeInterval.Duration > eighteenYears)
                 {
-                    outputDate = c.BirthDate;
+                    outputDate = (DateTime)c.Dt_Nascimento;
                 }
                 else
                 {
@@ -126,7 +125,7 @@ namespace Cliente.controller
             bool parseSuccess = float.TryParse(inputIncome, out outputIncome);
             if (parseSuccess)
             {
-                c.MonthlyIncome = (float)Convert.ToDouble(outputIncome);
+                c.Renda_Mensal = (float)Convert.ToDouble(outputIncome);
             }
             else
             {
@@ -147,16 +146,16 @@ namespace Cliente.controller
                 switch (char.ToUpper(outputStatus))
                 {
                     case 'C':
-                        c.MaritalStatus = 'C';
+                        c.Estado_Civil = 'C';
                         break;
                     case 'S':
-                        c.MaritalStatus = 'S';
+                        c.Estado_Civil = 'S';
                         break;
                     case 'V':
-                        c.MaritalStatus = 'V';
+                        c.Estado_Civil = 'V';
                         break;
                     case 'D':
-                        c.MaritalStatus = 'D';
+                        c.Estado_Civil = 'D';
                         break;
                     default:
                         a.ErrorMessages(6);
@@ -180,12 +179,12 @@ namespace Cliente.controller
             bool parseSuccess = int.TryParse(inputDependents, out outputDependents);
             if (parseSuccess)
             {
-                c.NumberOfDependents = Convert.ToInt32(outputDependents);
-                int n = c.NumberOfDependents;
+                c.Dependentes = Convert.ToInt32(outputDependents);
+                int n = (int)c.Dependentes;
                 switch (n)
                 {
                     case >= 0 and <= 10:
-                        c.NumberOfDependents = outputDependents;
+                        c.Dependentes = outputDependents;
                         break;
                     default:
                         a.ErrorMessages(7);
