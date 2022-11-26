@@ -1,35 +1,23 @@
 ﻿using Cliente.model;
-using Cliente.data;
 using System.Text.Json;
 
-namespace DeserializeJsonToPocoClass
+namespace Cliente
 {
     public class Program
     {
-        private static readonly ClientsList _clientList = new();
-        public static int OutputResult = 0;
+        public static Client DeserializedJsonClient { get; set; } = default!;
 
         public static void Main()
         {
-            Console.WriteLine("-------------------- Deserializing complex JSON object");
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine();
-
             Console.WriteLine("---------- Reading JSON file");
-            var json = ReadJsonFile();
+            var jsonStr = File.ReadAllText("data/cliente.json");
 
             Console.WriteLine();
 
             Console.WriteLine("---------- Deserialize using Generic System.Text.Json");
-            var clientGenericSystemText = _clientList.DeserializerUsingGenericSystemTextJson(json);
+            DeserializedJsonClient = JsonSerializer.Deserialize<Client>(jsonStr)!;
 
             Console.WriteLine("End of execution");
-
-            OutputResult = 1;
-        }
-        public static string ReadJsonFile()
-        {
-            return clientes.json;
         }
     }
 }
