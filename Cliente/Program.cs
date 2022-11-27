@@ -1,6 +1,4 @@
 ﻿using Cliente.controller;
-using Cliente.model;
-using System.Text.Json;
 
 namespace Cliente
 {

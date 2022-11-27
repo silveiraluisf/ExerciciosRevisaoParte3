@@ -16,21 +16,10 @@ namespace Cliente.controller
             Interface a = new Interface();
             Client c = new Client();
             Root r = new Root();
-
-            x.DeserializeJson();
+            List<Root> roots = new List<Root>();
             a.Title();
-            //x.AddClientName(a);
-            //x.AddClientCPF(a);
-            //x.AddClientBirthDate(a);
-            //x.AddClientIncome(a);
-            //x.AddClientMaritalStatus(a);
-            //x.AddNumberOfDependents(a);
-            //x.NameValidate(a, c, r);
-            //x.CPFValidate(a, c, r);
-            //x.BirthDateValidate(a, c, r);
-            //x.IncomeValidate(a, c, r);
-            //x.StatusValidate(a, c, r);
-            //x.DependentsValidate(a, c, r);
+            ClientController.DeserializeJson();           
+            ClientController.ValidatorMaster(roots, a, c);
             //x.ShowClient(a, c);
         }
     }

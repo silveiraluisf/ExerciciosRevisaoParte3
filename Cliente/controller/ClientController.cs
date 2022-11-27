@@ -1,38 +1,46 @@
 ﻿using Cliente.model;
 using Cliente.view;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 namespace Cliente.controller
 {
     public class ClientController
     {
-        public void DeserializeJson()
+        //List<Root> roots = new List<Root>();
+
+        public static void DeserializeJson()
         {
+            Interface a = new Interface();
+            Client c = new Client();
+            Root x = new Root();
             var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
 
             string jsonString;
             _ = new Root();
 
-            jsonString = File.ReadAllText(path); //GetType().Name = String
-
-            //Console.WriteLine(jsonString); //WORKS           
-
+            jsonString = File.ReadAllText(path); 
+            
             var clients = JsonSerializer.Deserialize<List<Root>>(jsonString);
-            Root? client = clients?.First();
-            foreach (Root c in clients)
+            _ = clients?.First();
+            for (int i = 0; i < clients?.Count; i++)
             {
-                Console.WriteLine($"Nome: {c.Nome}");
-                //SystemController s = new SystemController();
-                //s.OpenInterface();
+                Root r = clients[i];
+                Console.WriteLine($"Nome: {r.Nome}");
+            }
+            ValidatorMaster(clients, a, c);
+        }
+
+        public static void ValidatorMaster(List<Root> clients, Interface a, Client c)
+        {
+            for (int i = 0; i < clients?.Count; i++)
+            {
+                Root r = clients[i];
+                NameValidate(a, c, r);  
             }
         }
 
-        public void ShowClient(Interface a, Client c)
-        {
-            a.ShowData(c);
-        }
-
-        public void NameValidate(Interface a, Client c, Root r)
+        public static void NameValidate(Interface a, Client c, Root r)
         {
             string? name = r?.Nome;
             switch (name?.Length)
@@ -49,11 +57,12 @@ namespace Cliente.controller
                     break;
                 case >= 5:
                     c.Nome = name;
+                    Console.WriteLine($"{c.Nome} VALIDADO ");
                     break;
             }
         }
 
-        public void CPFValidate(Interface a, Client c, Root r)
+        public static void CPFValidate(Interface a, Client c, Root r)
         {
             string? inputCPF = r?.CPF;
             long outputCPF;
@@ -80,7 +89,7 @@ namespace Cliente.controller
             }
         }
 
-        public void BirthDateValidate(Interface a, Client c, Root r)
+        public static void BirthDateValidate(Interface a, Client c, Root r)
         {
             string? inputDate = r?.Dt_Nascimento;
             DateTime now = DateTime.Now;
@@ -109,7 +118,7 @@ namespace Cliente.controller
             }
         }
 
-        public void IncomeValidate(Interface a, Client c, Root r)
+        public static void IncomeValidate(Interface a, Client c, Root r)
         {
             string? inputIncome = r?.Renda_Mensal;
             float outputIncome;
@@ -126,7 +135,7 @@ namespace Cliente.controller
             }
         }
 
-        public void StatusValidate(Interface a, Client c, Root r)
+        public static void StatusValidate(Interface a, Client c, Root r)
         {
             string? inputStatus = r?.Estado_Civil;
             char outputStatus;
@@ -163,7 +172,7 @@ namespace Cliente.controller
             }
         }
 
-        public void DependentsValidate(Interface a, Client c, Root r)
+        public static void DependentsValidate(Interface a, Client c, Root r)
         {
             string? inputDependents = r?.Dependentes;
             int outputDependents;
