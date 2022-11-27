@@ -7,13 +7,10 @@ namespace Cliente.controller
 {
     public class ClientController
     {
-        //List<Root> roots = new List<Root>();
-
         public static void DeserializeJson()
         {
-            Interface a = new Interface();
-            Client c = new Client();
-            Root x = new Root();
+            Interface a = new();
+            Client c = new();
             var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
 
             string jsonString;
@@ -25,8 +22,7 @@ namespace Cliente.controller
             _ = clients?.First();
             for (int i = 0; i < clients?.Count; i++)
             {
-                Root r = clients[i];
-                Console.WriteLine($"Nome: {r.Nome}");
+                _ = clients[i];
             }
             ValidatorMaster(clients, a, c);
         }
