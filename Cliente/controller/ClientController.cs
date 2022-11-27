@@ -36,7 +36,12 @@ namespace Cliente.controller
             for (int i = 0; i < clients?.Count; i++)
             {
                 Root r = clients[i];
-                NameValidate(a, c, r);  
+                NameValidate(a, c, r);
+                CPFValidate(a, c, r);
+                BirthDateValidate(a, c, r);
+                IncomeValidate(a, c, r);
+                StatusValidate(a, c, r);
+                DependentsValidate(a, c, r);
             }
         }
 
@@ -73,6 +78,7 @@ namespace Cliente.controller
                     if (parseSuccess)
                     {
                         c.CPF = outputCPF;
+                        Console.WriteLine($"{c.CPF} VALIDADO ");
                     }
                     else
                     {
@@ -102,6 +108,7 @@ namespace Cliente.controller
                 if (timeInterval.Duration > eighteenYears)
                 {
                     outputDate = (DateTime)c.Dt_Nascimento;
+                    Console.WriteLine($"{c.Dt_Nascimento} VALIDADA ");
                 }
                 else
                 {
@@ -126,6 +133,7 @@ namespace Cliente.controller
             if (parseSuccess)
             {
                 c.Renda_Mensal = (float)Convert.ToDouble(outputIncome);
+                Console.WriteLine($"{c.Renda_Mensal} VALIDADA ");
             }
             else
             {
@@ -147,15 +155,19 @@ namespace Cliente.controller
                 {
                     case 'C':
                         c.Estado_Civil = 'C';
+                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     case 'S':
                         c.Estado_Civil = 'S';
+                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     case 'V':
                         c.Estado_Civil = 'V';
+                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     case 'D':
                         c.Estado_Civil = 'D';
+                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     default:
                         //a.ErrorMessages(6);
@@ -185,6 +197,7 @@ namespace Cliente.controller
                 {
                     case >= 0 and <= 10:
                         c.Dependentes = outputDependents;
+                        Console.WriteLine($"{c.Dependentes} VALIDADO ");
                         break;
                     default:
                         //a.ErrorMessages(7);
