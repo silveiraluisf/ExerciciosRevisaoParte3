@@ -1,16 +1,19 @@
 ﻿using Cliente.model;
 using Cliente.view;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Cliente.controller
 {
     public class ClientController
     {
-        public static void DeserializeJson()
+
+        public static void DeserializeClientsJson()
         {
             Interface a = new();
             Client c = new();
+            Erro e = new();
+            RootErros re = new();
             var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
 
             string jsonString;
@@ -24,37 +27,48 @@ namespace Cliente.controller
             {
                 _ = clients[i];
             }
-            ValidatorMaster(clients, a, c);
+            ValidatorMaster(clients, a, c, e);
+            SerializeErrorsJson(e);
         }
 
-        public static void ValidatorMaster(List<Root> clients, Interface a, Client c)
+        public static void SerializeErrorsJson(Erro errors)
+        {
+            //var errors = new RootErros();
+            var fileName = "erros.json";
+            PrettyWrite(errors, fileName);
+        }
+
+        public static void PrettyWrite(Erro rootErros, string fileName)
+        {
+            var jsonString = JsonSerializer.Serialize(rootErros); 
+            File.WriteAllText(fileName, jsonString);
+            Console.WriteLine(jsonString);
+        }
+
+        public static void ValidatorMaster(List<Root> clients, Interface a, Client c, Erro e)
         {
             for (int i = 0; i < clients?.Count; i++)
             {
                 Root r = clients[i];
-                NameValidate(a, c, r);
-                CPFValidate(a, c, r);
-                BirthDateValidate(a, c, r);
-                IncomeValidate(a, c, r);
-                StatusValidate(a, c, r);
-                DependentsValidate(a, c, r);
+                NameValidate(a, c, r, e);
+                CPFValidate(a, c, r, e);
+                BirthDateValidate(a, c, r, e);
+                IncomeValidate(a, c, r, e);
+                StatusValidate(a, c, r, e);
+                DependentsValidate(a, c, r, e);
             }
         }
 
-        public static void NameValidate(Interface a, Client c, Root r)
+        public static void NameValidate(Interface a, Client c, Root r, Erro e)
         {
             string? name = r?.Nome;
             switch (name?.Length)
             {
                 case 0:
-                    //a.ErrorMessages(0);
-                    //a.GetName();
-                    //NameValidate(a, c);
+                    e.Nome = "O nome não pode ser vazio";
                     break;
                 case < 5:
-                    //a.ErrorMessages(1);
-                    //a.GetName();
-                    //NameValidate(a, c);
+                    e.Nome = "O nome deve ter pelo menos 5 caracteres";
                     break;
                 case >= 5:
                     c.Nome = name;
@@ -63,7 +77,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void CPFValidate(Interface a, Client c, Root r)
+        public static void CPFValidate(Interface a, Client c, Root r, Erro e)
         {
             string? inputCPF = r?.CPF;
             long outputCPF;
@@ -78,20 +92,16 @@ namespace Cliente.controller
                     }
                     else
                     {
-                        //a.ErrorMessages(2);
-                        //a.GetCPF();
-                        //CPFValidate(a, c);
+                        e.Cpf = "Favor insira um CPF válido(11 caracteres, apenas números).";
                     }
                     break;
                 default:
-                    //a.ErrorMessages(2);
-                    //a.GetCPF();
-                    //CPFValidate(a, c);
+                    e.Cpf = "Favor insira um CPF válido(11 caracteres, apenas números).";
                     break;
             }
         }
 
-        public static void BirthDateValidate(Interface a, Client c, Root r)
+        public static void BirthDateValidate(Interface a, Client c, Root r, Erro e)
         {
             string? inputDate = r?.Dt_Nascimento;
             DateTime now = DateTime.Now;
@@ -108,20 +118,16 @@ namespace Cliente.controller
                 }
                 else
                 {
-                    //a.ErrorMessages(3);
-                    //a.GetDate();
-                    //BirthDateValidate(a, c);
+                    e.Dt_nascimento = "O cliente deve ter pelo menos 18 anos!";
                 }
             }
             else
             {
-                //a.ErrorMessages(4);
-                //a.GetDate();
-                //BirthDateValidate(a, c);
+                e.Dt_nascimento = "Favor insira uma data no formato DD,MM,AAAA.";
             }
         }
 
-        public static void IncomeValidate(Interface a, Client c, Root r)
+        public static void IncomeValidate(Interface a, Client c, Root r, Erro e)
         {
             string? inputIncome = r?.Renda_Mensal;
             float outputIncome;
@@ -133,13 +139,11 @@ namespace Cliente.controller
             }
             else
             {
-                //a.ErrorMessages(5);
-                //a.GetIncome();
-                //IncomeValidate(a, c);
+                e.Renda_mensal = "Insira um valor válido em $.";
             }
         }
 
-        public static void StatusValidate(Interface a, Client c, Root r)
+        public static void StatusValidate(Interface a, Client c, Root r, Erro e)
         {
             string? inputStatus = r?.Estado_Civil;
             char outputStatus;
@@ -166,21 +170,17 @@ namespace Cliente.controller
                         Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     default:
-                        //a.ErrorMessages(6);
-                        //a.GetStatus();
-                        //StatusValidate(a, c);
+                        e.Estado_civil = "Favor insira um estado civil válido (C, S, V ou D).";
                         break;
                 }
             }
             else
             {
-                //a.ErrorMessages(6);
-                //a.GetStatus();
-                //StatusValidate(a, c);
+                e.Estado_civil = "Favor insira um estado civil válido (C, S, V ou D).";
             }
         }
 
-        public static void DependentsValidate(Interface a, Client c, Root r)
+        public static void DependentsValidate(Interface a, Client c, Root r, Erro e)
         {
             string? inputDependents = r?.Dependentes;
             int outputDependents;
@@ -196,18 +196,14 @@ namespace Cliente.controller
                         Console.WriteLine($"{c.Dependentes} VALIDADO ");
                         break;
                     default:
-                        //a.ErrorMessages(7);
-                        //a.GetDependents();
-                        //DependentsValidate(a, c);
+                        e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
                         break;
                 }
             }
             else
             {
-                //a.ErrorMessages(7);
-                //a.GetDependents();
-                //DependentsValidate(a, c);
+                e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
             }
         }
-    }
+    }     
 }

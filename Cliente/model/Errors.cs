@@ -1,6 +1,6 @@
 ﻿namespace Cliente.model
 {
-    public class Dados
+    public record class Erro
     {
         public string? Nome { get; set; }
         public string? Cpf { get; set; }
@@ -10,19 +10,9 @@
         public string? Dependentes { get; set; }
     }
 
-    public class Erro
+    public record class RootErros
     {
-        public string? Nome { get; set; }
-        public string? Cpf { get; set; }
-        public string? Dt_nascimento { get; set; }
-        public string? Renda_mensal { get; set; }
-        public string? Estado_civil { get; set; }
-        public string? Dependentes { get; set; }
-    }
-
-    public class RootErros
-    {
-        public Dados? Dados { get; set; }
+        public Root? Root { get; set; }
         public List<Erro>? Erros { get; set; }
     }
 }
