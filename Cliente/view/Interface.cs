@@ -4,13 +4,13 @@ namespace Cliente.view
 {
     public class Interface
     {
-        private string _inputName;
-        private string _inputCPF;
-        private string _inputDate;
-        private string _inputIncome;
-        private string _inputStatus;
-        private string _inputNOfDependents;
-        private List<string> _errorList;
+        private string? _inputName;
+        private string? _inputCPF;
+        private string? _inputDate;
+        private string? _inputIncome;
+        private string? _inputStatus;
+        private string? _inputNOfDependents;
+        private List<string>? _errorList;
 
         public string InputName
         {
@@ -98,8 +98,8 @@ namespace Cliente.view
             Console.WriteLine("---- CLIENTE CADASTRADO ----");
             Console.WriteLine("");
             Console.WriteLine($"Nome: {c.Nome}");
-            Console.WriteLine($"CPF: {c.CPF.ToString("00000000000")}");
-            Console.WriteLine($"Data de nascimento: {c.Dt_Nascimento.ToString("dd/MM/yyyy")}");
+            Console.WriteLine($"CPF: {c.CPF}");
+            Console.WriteLine($"Data de nascimento: {c.Dt_Nascimento}");
             Console.WriteLine($"Renda mensal: {c.Renda_Mensal}");
             Console.WriteLine($"Estado civil: {c.Estado_Civil}");
             Console.WriteLine($"Número de dependentes: {c.Dependentes}");

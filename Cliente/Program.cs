@@ -5,19 +5,25 @@ namespace Cliente
 {
     public class Program
     {
-        public static Client DeserializedJsonClient { get; set; } = default!;
-
-        public static void Main()
+        static void Main(string[] args)
         {
-            Console.WriteLine("---------- Reading JSON file");
-            var jsonStr = File.ReadAllText("data/cliente.json");
 
-            Console.WriteLine();
+            var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
 
-            Console.WriteLine("---------- Deserialize using Generic System.Text.Json");
-            DeserializedJsonClient = JsonSerializer.Deserialize<Client>(jsonStr)!;
+            string jsonString;
+            _ = new Root();
 
-            Console.WriteLine("End of execution");
+            jsonString = File.ReadAllText(path); //GetType().Name = String
+
+            //Console.WriteLine(jsonString); //WORKS           
+
+            var clients = JsonSerializer.Deserialize<List<Root>>(jsonString);
+            Root? client = clients?.First();
+            foreach (Root c in clients)
+                {
+                Console.WriteLine($"Nome: {c.Nome}");
+            }
+            
         }
     }
 }

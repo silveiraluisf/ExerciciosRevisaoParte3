@@ -40,20 +40,20 @@ namespace Cliente.controller
             a.ShowData(c);
         }
 
-        public void NameValidate(Interface a, Client c)
+        public void NameValidate(Interface a, Client c, Root r)
         {
-            string name = a.InputName;
+            string name = r.Nome;
             switch (name.Length)
             {
                 case 0:
-                    a.ErrorMessages(0);
-                    a.GetName();
-                    NameValidate(a, c);
+                    //a.ErrorMessages(0);
+                    //a.GetName();
+                    //NameValidate(a, c);
                     break;
                 case < 5:
-                    a.ErrorMessages(1);
-                    a.GetName();
-                    NameValidate(a, c);
+                    //a.ErrorMessages(1);
+                    //a.GetName();
+                    //NameValidate(a, c);
                     break;
                 case >= 5:
                     c.Nome = name;
@@ -61,9 +61,9 @@ namespace Cliente.controller
             }
         }
 
-        public void CPFValidate(Interface a, Client c)
+        public void CPFValidate(Interface a, Client c, Root r)
         {
-            string inputCPF = a.InputCPF;
+            string inputCPF = r.CPF;
             long outputCPF;
             switch (inputCPF.Length)
             {
@@ -75,26 +75,25 @@ namespace Cliente.controller
                     }
                     else
                     {
-                        a.ErrorMessages(2);
-                        a.GetCPF();
-                        CPFValidate(a, c);
+                        //a.ErrorMessages(2);
+                        //a.GetCPF();
+                        //CPFValidate(a, c);
                     }
                     break;
                 default:
-                    a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //a.ErrorMessages(2);
+                    //a.GetCPF();
+                    //CPFValidate(a, c);
                     break;
             }
         }
 
-        public void BirthDateValidate(Interface a, Client c)
+        public void BirthDateValidate(Interface a, Client c, Root r)
         {
-            string inputDate = a.InputDate;
-            DateTime outputDate;
+            string inputDate = r.Dt_Nascimento;
             DateTime now = DateTime.Now;
-            TimeSpan eighteenYears = new TimeSpan(6574, 0, 0, 0);
-            bool parseSuccess = DateTime.TryParse(inputDate, out outputDate);
+            TimeSpan eighteenYears = new(6574, 0, 0, 0);
+            bool parseSuccess = DateTime.TryParse(inputDate, out DateTime outputDate);
             if (parseSuccess)
             {
                 c.Dt_Nascimento = Convert.ToDateTime(outputDate);
@@ -105,22 +104,22 @@ namespace Cliente.controller
                 }
                 else
                 {
-                    a.ErrorMessages(3);
-                    a.GetDate();
-                    BirthDateValidate(a, c);
+                    //a.ErrorMessages(3);
+                    //a.GetDate();
+                    //BirthDateValidate(a, c);
                 }
             }
             else
             {
-                a.ErrorMessages(4);
-                a.GetDate();
-                BirthDateValidate(a, c);
+                //a.ErrorMessages(4);
+                //a.GetDate();
+                //BirthDateValidate(a, c);
             }
         }
 
-        public void IncomeValidate(Interface a, Client c)
+        public void IncomeValidate(Interface a, Client c, Root r)
         {
-            string inputIncome = a.InputIncome;
+            string inputIncome = r.Renda_Mensal;
             float outputIncome;
             bool parseSuccess = float.TryParse(inputIncome, out outputIncome);
             if (parseSuccess)
@@ -129,15 +128,15 @@ namespace Cliente.controller
             }
             else
             {
-                a.ErrorMessages(5);
-                a.GetIncome();
-                IncomeValidate(a, c);
+                //a.ErrorMessages(5);
+                //a.GetIncome();
+                //IncomeValidate(a, c);
             }
         }
 
-        public void StatusValidate(Interface a, Client c)
+        public void StatusValidate(Interface a, Client c, Root r)
         {
-            string inputStatus = a.InputStatus;
+            string inputStatus = r.Estado_Civil;
             char outputStatus;
             bool parseSuccess = char.TryParse(inputStatus, out outputStatus);
             if (parseSuccess)
@@ -158,23 +157,23 @@ namespace Cliente.controller
                         c.Estado_Civil = 'D';
                         break;
                     default:
-                        a.ErrorMessages(6);
-                        a.GetStatus();
-                        StatusValidate(a, c);
+                        //a.ErrorMessages(6);
+                        //a.GetStatus();
+                        //StatusValidate(a, c);
                         break;
                 }
             }
             else
             {
-                a.ErrorMessages(6);
-                a.GetStatus();
-                StatusValidate(a, c);
+                //a.ErrorMessages(6);
+                //a.GetStatus();
+                //StatusValidate(a, c);
             }
         }
 
-        public void DependentsValidate(Interface a, Client c)
+        public void DependentsValidate(Interface a, Client c, Root r)
         {
-            string inputDependents = a.InputNOfDependents;
+            string inputDependents = r.Dependentes;
             int outputDependents;
             bool parseSuccess = int.TryParse(inputDependents, out outputDependents);
             if (parseSuccess)
@@ -187,17 +186,17 @@ namespace Cliente.controller
                         c.Dependentes = outputDependents;
                         break;
                     default:
-                        a.ErrorMessages(7);
-                        a.GetDependents();
-                        DependentsValidate(a, c);
+                        //a.ErrorMessages(7);
+                        //a.GetDependents();
+                        //DependentsValidate(a, c);
                         break;
                 }
             }
             else
             {
-                a.ErrorMessages(7);
-                a.GetDependents();
-                DependentsValidate(a, c);
+                //a.ErrorMessages(7);
+                //a.GetDependents();
+                //DependentsValidate(a, c);
             }
         }
     }
