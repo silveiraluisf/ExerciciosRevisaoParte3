@@ -1,38 +1,30 @@
 ﻿using Cliente.model;
 using Cliente.view;
+using System.Text.Json;
 
 namespace Cliente.controller
 {
     public class ClientController
     {
-        public void AddClientName(Interface a)
+        public void DeserializeJson()
         {
-            a.GetName();
-        }
+            var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
 
-        public void AddClientCPF(Interface a)
-        {
-            a.GetCPF();
-        }
+            string jsonString;
+            _ = new Root();
 
-        public void AddClientBirthDate(Interface a)
-        {
-            a.GetDate();
-        }
+            jsonString = File.ReadAllText(path); //GetType().Name = String
 
-        public void AddClientIncome(Interface a)
-        {
-            a.GetIncome();
-        }
+            //Console.WriteLine(jsonString); //WORKS           
 
-        public void AddClientMaritalStatus(Interface a)
-        {
-            a.GetStatus();
-        }
-
-        public void AddNumberOfDependents(Interface a)
-        {
-            a.GetDependents();
+            var clients = JsonSerializer.Deserialize<List<Root>>(jsonString);
+            Root? client = clients?.First();
+            foreach (Root c in clients)
+            {
+                Console.WriteLine($"Nome: {c.Nome}");
+                //SystemController s = new SystemController();
+                //s.OpenInterface();
+            }
         }
 
         public void ShowClient(Interface a, Client c)
@@ -42,8 +34,8 @@ namespace Cliente.controller
 
         public void NameValidate(Interface a, Client c, Root r)
         {
-            string name = r.Nome;
-            switch (name.Length)
+            string? name = r?.Nome;
+            switch (name?.Length)
             {
                 case 0:
                     //a.ErrorMessages(0);
@@ -63,9 +55,9 @@ namespace Cliente.controller
 
         public void CPFValidate(Interface a, Client c, Root r)
         {
-            string inputCPF = r.CPF;
+            string? inputCPF = r?.CPF;
             long outputCPF;
-            switch (inputCPF.Length)
+            switch (inputCPF?.Length)
             {
                 case 11:
                     bool parseSuccess = long.TryParse(inputCPF, out outputCPF);
@@ -90,7 +82,7 @@ namespace Cliente.controller
 
         public void BirthDateValidate(Interface a, Client c, Root r)
         {
-            string inputDate = r.Dt_Nascimento;
+            string? inputDate = r?.Dt_Nascimento;
             DateTime now = DateTime.Now;
             TimeSpan eighteenYears = new(6574, 0, 0, 0);
             bool parseSuccess = DateTime.TryParse(inputDate, out DateTime outputDate);
@@ -119,7 +111,7 @@ namespace Cliente.controller
 
         public void IncomeValidate(Interface a, Client c, Root r)
         {
-            string inputIncome = r.Renda_Mensal;
+            string? inputIncome = r?.Renda_Mensal;
             float outputIncome;
             bool parseSuccess = float.TryParse(inputIncome, out outputIncome);
             if (parseSuccess)
@@ -136,7 +128,7 @@ namespace Cliente.controller
 
         public void StatusValidate(Interface a, Client c, Root r)
         {
-            string inputStatus = r.Estado_Civil;
+            string? inputStatus = r?.Estado_Civil;
             char outputStatus;
             bool parseSuccess = char.TryParse(inputStatus, out outputStatus);
             if (parseSuccess)
@@ -173,7 +165,7 @@ namespace Cliente.controller
 
         public void DependentsValidate(Interface a, Client c, Root r)
         {
-            string inputDependents = r.Dependentes;
+            string? inputDependents = r?.Dependentes;
             int outputDependents;
             bool parseSuccess = int.TryParse(inputDependents, out outputDependents);
             if (parseSuccess)
