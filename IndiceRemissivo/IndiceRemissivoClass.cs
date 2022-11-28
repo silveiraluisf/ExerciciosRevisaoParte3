@@ -10,7 +10,7 @@ namespace IndiceRemissivo
 
             Dictionary<string, int> stats = new Dictionary<string, int>();
             var text= File.ReadAllText(pathTXT);
-            char[] chars = { ' ', '.', ',', ';', ':', '?', '\n', '\r' };
+            char[] chars = { ' ', '.', ',', ';', ':', '?', '<', '>', '\\', '/', '|', '~', '^', '´', '`', '[', ']', '{', '}', '‘', '“', '!', '@', '#', '$', '%', '&', '&', '(', ')', '_', '+', '=', '\n', '\r' };
 
             //separa palavras
             string[] words = text.Split(chars);
@@ -19,7 +19,7 @@ namespace IndiceRemissivo
             //interacao sobre as palavras para contar o numero de ocorrencias
             foreach(string word in words)
             {
-                string w = word.Trim().ToLower();
+                string w = word.Trim().ToUpper();
                 if(w.Length > minWordLength )
                 {
                     if (!stats.ContainsKey(w))
@@ -37,7 +37,7 @@ namespace IndiceRemissivo
 
             foreach(var pair in ordenerStats)
             {
-                Console.WriteLine("Total de ocorrências de {0}: {1}" , pair.Key, pair.Value);
+                Console.WriteLine("{0} ({1})" , pair.Key, pair.Value);
             }
 
         }
