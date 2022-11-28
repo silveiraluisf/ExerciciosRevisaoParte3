@@ -12,7 +12,7 @@
 
     public record class RootErros
     {
-        public Root? Root { get; set; }
+        public Data? Dados { get; set; }
         public List<Erro>? Erros { get; set; }
     }
 }

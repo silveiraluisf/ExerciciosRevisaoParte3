@@ -2,7 +2,7 @@
 
 namespace Cliente.model
 {
-    public class Root
+    public class Data
     {
         [JsonPropertyName("nome")]
         public string? Nome { get; set; } = default!;

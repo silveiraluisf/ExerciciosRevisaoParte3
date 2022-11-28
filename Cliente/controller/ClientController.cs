@@ -5,11 +5,11 @@ namespace Cliente.controller
 {
     public class ClientController
     {
-        public static void ValidatorMaster(List<Root> clients, Interface a, Client c, Erro e)
+        public static void ValidatorMaster(List<Data> clients, Interface a, Client c, Erro e)
         {
             for (int i = 0; i < clients?.Count; i++)
             {
-                Root r = clients[i];
+                Data r = clients[i];
                 NameValidate(a, c, r, e);
                 CPFValidate(a, c, r, e);
                 BirthDateValidate(a, c, r, e);
@@ -19,7 +19,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void NameValidate(Interface a, Client c, Root r, Erro e)
+        public static void NameValidate(Interface a, Client c, Data r, Erro e)
         {
             string? name = r?.Nome;
             switch (name?.Length)
@@ -37,7 +37,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void CPFValidate(Interface a, Client c, Root r, Erro e)
+        public static void CPFValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputCPF = r?.CPF;
             long outputCPF;
@@ -61,7 +61,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void BirthDateValidate(Interface a, Client c, Root r, Erro e)
+        public static void BirthDateValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputDate = r?.Dt_Nascimento;
             DateTime now = DateTime.Now;
@@ -87,7 +87,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void IncomeValidate(Interface a, Client c, Root r, Erro e)
+        public static void IncomeValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputIncome = r?.Renda_Mensal;
             float outputIncome;
@@ -103,7 +103,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void StatusValidate(Interface a, Client c, Root r, Erro e)
+        public static void StatusValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputStatus = r?.Estado_Civil;
             char outputStatus;
@@ -140,7 +140,7 @@ namespace Cliente.controller
             }
         }
 
-        public static void DependentsValidate(Interface a, Client c, Root r, Erro e)
+        public static void DependentsValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputDependents = r?.Dependentes;
             int outputDependents;
@@ -165,5 +165,10 @@ namespace Cliente.controller
                 e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
             }
         }
+        public static RootErros GetErrors(Data r) => new()
+        {
+            Dados = r,
+            Erros = null,
+        };
     }     
 }

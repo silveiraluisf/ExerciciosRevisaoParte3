@@ -6,8 +6,8 @@ namespace Cliente.controller
     {
         public void OpenInterface()
         {
-            Interface a = new();
-            a.Title();
+            Interface @interface = new();
+            @interface.Title();
             SerializationController.DeserializeClientsJson();
         }
     }
