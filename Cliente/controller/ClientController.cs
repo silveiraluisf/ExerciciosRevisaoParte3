@@ -16,7 +16,7 @@ namespace Cliente.controller
                 IncomeValidate(a, c, r, e);
                 StatusValidate(a, c, r, e);
                 DependentsValidate(a, c, r, e);
-                SerializationController.SerializeErrorsJson(r);
+                SerializationController.SerializeErrorsJson(r, e);
             }
         }
 
@@ -160,6 +160,7 @@ namespace Cliente.controller
                         break;
                     default:
                         e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
+                        Console.WriteLine($"TESTE ERRO ");
                         break;
                 }
             }
@@ -168,10 +169,10 @@ namespace Cliente.controller
                 e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
             }
         }
-        public static RootErros GetErrors(Data r) => new()
-        {
-            Dados = r,
-            Erros = null,
-        };
+        //public static RootErros GetErrors(Data r) => new()
+        //{
+        //    Dados = r,
+        //    Erros = null,
+        //};
     }     
 }

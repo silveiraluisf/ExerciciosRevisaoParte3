@@ -30,11 +30,18 @@ namespace Cliente.controller
             //SerializeErrorsJson(data);
         }
 
-        public static void SerializeErrorsJson(Data rclientsData)
+        public static void SerializeErrorsJson(Data rclientsData, Erro erro) 
         {
-            var errors = ClientController.GetErrors(rclientsData);
+            //var errors = ClientController.GetErrors(rclientsData);
+            List<Erro> list= new List<Erro> {erro};
+            //list.Add(erro);
+            RootErros root = new()
+            {
+                Dados = rclientsData,
+                Erros = list,
+            };
             var fileName = "erros.json";
-            PrettyWrite(errors, fileName);
+            PrettyWrite(root, fileName);
         }
 
         public static void PrettyWrite(RootErros rootErros, string fileName)
