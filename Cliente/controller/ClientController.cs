@@ -16,6 +16,7 @@ namespace Cliente.controller
                 IncomeValidate(a, c, r, e);
                 StatusValidate(a, c, r, e);
                 DependentsValidate(a, c, r, e);
+                SerializationController.SerializeErrorsJson(r);
             }
         }
 

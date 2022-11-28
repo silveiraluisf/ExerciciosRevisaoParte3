@@ -1,6 +1,5 @@
 ﻿using Cliente.model;
 using Cliente.view;
-using System.Drawing;
 using System.Text.Json;
 
 namespace Cliente.controller
@@ -28,7 +27,7 @@ namespace Cliente.controller
                 _ = clients[i];
             }
             ClientController.ValidatorMaster(clients, @interface, client, erro);
-            SerializeErrorsJson(data);
+            //SerializeErrorsJson(data);
         }
 
         public static void SerializeErrorsJson(Data rclientsData)
