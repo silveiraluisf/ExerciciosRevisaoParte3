@@ -93,6 +93,7 @@ namespace Cliente.controller
             string? inputIncome = r?.Renda_Mensal;
             float outputIncome;
             bool parseSuccess = float.TryParse(inputIncome, out outputIncome);
+            Console.WriteLine(parseSuccess);
             if (parseSuccess)
             {
                 c.Renda_Mensal = (float)Convert.ToDouble(outputIncome);
@@ -100,6 +101,7 @@ namespace Cliente.controller
             }
             else
             {
+                Console.WriteLine($"{r.Renda_Mensal} PROBLEMA ");
                 e.Renda_mensal = "Insira um valor válido em $.";
             }
         }

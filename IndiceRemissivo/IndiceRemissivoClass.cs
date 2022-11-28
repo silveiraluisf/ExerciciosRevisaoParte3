@@ -1,12 +1,10 @@
-﻿using System.IO;
-
-namespace IndiceRemissivo
+﻿namespace IndiceRemissivo
 {
     public class IndiceRemissivoClass
     {
         public static void IndiceRemissivo(string pathTXT)
         {
-            //Publicação utilizada como base para desenvolver a atividade: https://blog.groupdocs.com/parser/count-words-and-occurrences-using-csharp/
+            //Fonte utilizada como base para desenvolver a atividade: https://blog.groupdocs.com/parser/count-words-and-occurrences-using-csharp/
 
             Dictionary<string, int> stats = new Dictionary<string, int>();
             var text= File.ReadAllText(pathTXT);
@@ -34,16 +32,34 @@ namespace IndiceRemissivo
             }
 
             var ordenerStats = stats.OrderBy(x => x.Key);
-
-            foreach(var pair in ordenerStats)
-            {
-                Console.WriteLine("{0} ({1})" , pair.Key, pair.Value);
-            }
-
+            Imprime(ordenerStats);
+          
         }
-        public static void Imprime()
+        public static void Imprime(IOrderedEnumerable<KeyValuePair<string, int>> a)
         {
-            Console.WriteLine();
+            foreach (var pair in a)
+            {
+                Console.WriteLine("{0} ({1})", pair.Key, pair.Value);
+            }
+        }
+
+        public static void LinesCount(string pathTXT)
+        {
+
+            string line = File.ReadLines(pathTXT);
+            
+                int counter = 0;
+
+                // Read the file and display it line by line.  
+                foreach (string line in System.IO.File.ReadLines(@"c:\test.txt"))
+                {
+                    System.Console.WriteLine(line);
+                    counter++;
+                }
+
+                System.Console.WriteLine("There were {0} lines.", counter);
+                // Suspend the screen.  
+                System.Console.ReadLine();
         }
     }
 }
