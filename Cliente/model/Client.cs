@@ -1,8 +1,4 @@
-﻿using System.Formats.Asn1;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace Cliente.model
+﻿namespace Cliente.model
 {
     public class Client
     {

@@ -1,6 +1,7 @@
 ﻿using Cliente.model;
 using Cliente.view;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Cliente.controller
 {
@@ -9,8 +10,7 @@ namespace Cliente.controller
         public static void DeserializeClientsJson()
         {
             Interface @interface = new();
-            Client client = new();
-            Erro erro = new();
+            Client client = new();            
             Data? data = new Data();
 
             var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
@@ -26,15 +26,12 @@ namespace Cliente.controller
             {
                 _ = clients[i];
             }
-            ClientController.ValidatorMaster(clients, @interface, client, erro);
-            //SerializeErrorsJson(data);
+            ClientController.ValidatorMaster(clients, @interface, client);
         }
 
         public static void SerializeErrorsJson(Data rclientsData, Erro erro) 
         {
-            //var errors = ClientController.GetErrors(rclientsData);
             List<Erro> list= new List<Erro> {erro};
-            //list.Add(erro);
             RootErros root = new()
             {
                 Dados = rclientsData,
@@ -44,10 +41,16 @@ namespace Cliente.controller
             PrettyWrite(root, fileName);
         }
 
+        private static readonly JsonSerializerOptions _options =
+        new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
+
         public static void PrettyWrite(RootErros rootErros, string fileName)
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(rootErros, options);
+            var options = new JsonSerializerOptions(_options)
+            {
+                WriteIndented = true
+            };
+            var jsonString = JsonSerializer.Serialize(rootErros, options);
             File.WriteAllText(fileName, jsonString);
             Console.WriteLine(jsonString);
         }

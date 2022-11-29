@@ -5,10 +5,11 @@ namespace Cliente.controller
 {
     public class ClientController
     {
-        public static void ValidatorMaster(List<Data> clients, Interface a, Client c, Erro e)
+        public static void ValidatorMaster(List<Data> clients, Interface a, Client c)
         {
             for (int i = 0; i < clients?.Count; i++)
             {
+                Erro e = new();
                 Data r = clients[i];
                 NameValidate(a, c, r, e);
                 CPFValidate(a, c, r, e);
@@ -33,7 +34,7 @@ namespace Cliente.controller
                     break;
                 case >= 5:
                     c.Nome = name;
-                    Console.WriteLine($"{c.Nome} VALIDADO ");
+                    //Console.WriteLine($"{c.Nome} VALIDADO ");
                     break;
             }
         }
@@ -49,15 +50,15 @@ namespace Cliente.controller
                     if (parseSuccess)
                     {
                         c.CPF = outputCPF;
-                        Console.WriteLine($"{c.CPF} VALIDADO ");
+                        //Console.WriteLine($"{c.CPF} VALIDADO ");
                     }
                     else
                     {
-                        e.Cpf = "Favor insira um CPF válido(11 caracteres, apenas números).";
+                        e.Cpf = "Favor insira um CPF valido(11 caracteres, apenas numeros).";
                     }
                     break;
                 default:
-                    e.Cpf = "Favor insira um CPF válido(11 caracteres, apenas números).";
+                    e.Cpf = "Favor insira um CPF valido(11 caracteres, apenas numeros).";
                     break;
             }
         }
@@ -75,7 +76,7 @@ namespace Cliente.controller
                 if (timeInterval.Duration > eighteenYears)
                 {
                     outputDate = (DateTime)c.Dt_Nascimento;
-                    Console.WriteLine($"{c.Dt_Nascimento} VALIDADA ");
+                    //Console.WriteLine($"{c.Dt_Nascimento} VALIDADA ");
                 }
                 else
                 {
@@ -91,26 +92,23 @@ namespace Cliente.controller
         public static void IncomeValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputIncome = r?.Renda_Mensal;
-            float outputIncome;
-            bool parseSuccess = float.TryParse(inputIncome, out outputIncome);
-            Console.WriteLine(parseSuccess);
+            bool parseSuccess = float.TryParse(inputIncome, out float outputIncome);
             if (parseSuccess)
             {
                 c.Renda_Mensal = (float)Convert.ToDouble(outputIncome);
-                Console.WriteLine($"{c.Renda_Mensal} VALIDADA ");
+                //Console.WriteLine($"{c.Renda_Mensal} VALIDADA ");
             }
             else
             {
-                Console.WriteLine($"{r.Renda_Mensal} PROBLEMA ");
-                e.Renda_mensal = "Insira um valor válido em $.";
+                //Console.WriteLine($"{r.Renda_Mensal} PROBLEMA ");
+                e.Renda_mensal = "Insira um valor valido em $.";
             }
         }
 
         public static void StatusValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputStatus = r?.Estado_Civil;
-            char outputStatus;
-            bool parseSuccess = char.TryParse(inputStatus, out outputStatus);
+            bool parseSuccess = char.TryParse(inputStatus, out char outputStatus);
             if (parseSuccess)
             {
                 Convert.ToChar(outputStatus);
@@ -118,36 +116,35 @@ namespace Cliente.controller
                 {
                     case 'C':
                         c.Estado_Civil = 'C';
-                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
+                        //Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     case 'S':
                         c.Estado_Civil = 'S';
-                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
+                        //Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     case 'V':
                         c.Estado_Civil = 'V';
-                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
+                        //Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     case 'D':
                         c.Estado_Civil = 'D';
-                        Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
+                        //Console.WriteLine($"{c.Estado_Civil} VALIDADO ");
                         break;
                     default:
-                        e.Estado_civil = "Favor insira um estado civil válido (C, S, V ou D).";
+                        e.Estado_civil = "Favor insira um estado civil valido (C, S, V ou D).";
                         break;
                 }
             }
             else
             {
-                e.Estado_civil = "Favor insira um estado civil válido (C, S, V ou D).";
+                e.Estado_civil = "Favor insira um estado civil valido (C, S, V ou D).";
             }
         }
 
         public static void DependentsValidate(Interface a, Client c, Data r, Erro e)
         {
             string? inputDependents = r?.Dependentes;
-            int outputDependents;
-            bool parseSuccess = int.TryParse(inputDependents, out outputDependents);
+            bool parseSuccess = int.TryParse(inputDependents, out int outputDependents);
             if (parseSuccess)
             {
                 c.Dependentes = Convert.ToInt32(outputDependents);
@@ -156,23 +153,17 @@ namespace Cliente.controller
                 {
                     case >= 0 and <= 10:
                         c.Dependentes = outputDependents;
-                        Console.WriteLine($"{c.Dependentes} VALIDADO ");
+                        //Console.WriteLine($"{c.Dependentes} VALIDADO ");
                         break;
                     default:
-                        e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
-                        Console.WriteLine($"TESTE ERRO ");
+                        e.Dependentes = "Favor insira um valor valido (entre 0 e 10).";
                         break;
                 }
             }
             else
             {
-                e.Dependentes = "Favor insira um valor válido (entre 0 e 10).";
+                e.Dependentes = "Favor insira um valor valido (entre 0 e 10).";
             }
         }
-        //public static RootErros GetErrors(Data r) => new()
-        //{
-        //    Dados = r,
-        //    Erros = null,
-        //};
     }     
 }

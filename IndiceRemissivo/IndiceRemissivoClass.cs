@@ -46,7 +46,7 @@
         public static void LinesCount(string pathTXT)
         {
 
-            string line = File.ReadLines(pathTXT);
+           // string line = File.ReadLines(pathTXT);
             
                 int counter = 0;
 
