@@ -4,9 +4,11 @@ public class Program
 {
     public static void Main()
     {
+        GenericList<int> inteiros = new();
+
         Console.WriteLine("---- REMOVEDOR DE OBJETOS REPETIDOS NA LISTA ----");
-        GenericList<int> inteiros = new GenericList<int>();
+        
         //incluindo inteiros e string na lista
-        inteiros.Re;        
+        inteiros.Remo;        
     }
 }

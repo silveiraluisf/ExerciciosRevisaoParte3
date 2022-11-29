@@ -12,7 +12,7 @@
             Console.WriteLine("Números de Armstrong entre 1 e 10000 \n");
             for (int numero = 1; numero <= 10000; numero++)
             {
-                if (n.IsArmstrong(numero))
+                if (n.IsAmstrong(numero))
                 {
                     Console.WriteLine($"{numero}");
                 }

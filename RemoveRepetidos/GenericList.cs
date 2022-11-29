@@ -5,6 +5,5 @@ namespace RemoveRepetidos
     public class GenericList<T>
     {
         private ArrayList alist = new ArrayList();
-
     }
 }
