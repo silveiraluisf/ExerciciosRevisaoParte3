@@ -17,7 +17,10 @@ namespace Cliente.controller
                 IncomeValidate(a, c, r, e);
                 StatusValidate(a, c, r, e);
                 DependentsValidate(a, c, r, e);
-                SerializationController.SerializeErrorsJson(r, e);
+                if (e.Nome != null || e.Cpf != null || e.Dt_nascimento != null || e.Renda_mensal != null || e.Estado_civil != null || e.Dependentes != null)
+                {
+                    SerializationController.SerializeErrorsJson(r, e);
+                }             
             }
         }
 
