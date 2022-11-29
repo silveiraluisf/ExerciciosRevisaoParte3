@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliente", "Cliente\Cliente.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndiceRemissivo", "IndiceRemissivo\IndiceRemissivo.csproj", "{A0482F0B-569F-4ABF-878D-DD3A17BB5B73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeroAmstrong", "NumeroAmstrong\NumeroAmstrong.csproj", "{C05B98F0-FAF2-4608-A767-2F123C89F911}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeroArmstrong", "NumeroAmstrong\NumeroArmstrong.csproj", "{C05B98F0-FAF2-4608-A767-2F123C89F911}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoveRepetidos", "RemoveRepetidos\RemoveRepetidos.csproj", "{759A5641-BBD1-4C15-AFC4-D5CD2EB8F1A6}"
 EndProject

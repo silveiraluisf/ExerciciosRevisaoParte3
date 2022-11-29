@@ -1,9 +1,9 @@
 ﻿namespace NumeroAmstrong
 {
-    public static class IsAmstrongClass
+    public static class IsArmstrongClass
     {
         // Verifica se o numero é um Número de Armstrong
-        public static bool IsAmstrong(this AmstrongNumbers obj, int x)
+        public static bool IsArmstrong(this ArmstrongNumbers obj, int x)
         {
             // chama o método para calcular a ordem do numero
             int ordem = obj.Ordem(x);

@@ -2,7 +2,7 @@
 
 namespace NumeroAmstrong
 {
-    public class AmstrongNumbers
+    public class ArmstrongNumbers
     {
         // Método para calcular a potência de um numero elevado a outro
         public int Potencia(int x, long y)
