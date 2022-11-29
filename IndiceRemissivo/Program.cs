@@ -11,8 +11,11 @@ namespace IndiceRemissivo
             Console.WriteLine("---- PROGRAMA INDICE REMISSIVO ----");
             pathTXT = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\IndiceRemissivo\\texto.txt";
             //pathIgnore = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\IndiceRemissivo\\ignore.txt";
+            if (!File.Exists(pathTXT))
+            {
+                throw new Exception("Insira um diretório válido!");
+            }
             IndiceRemissivoClass.IndiceRemissivo(pathTXT);
-
         }
     }
 }
