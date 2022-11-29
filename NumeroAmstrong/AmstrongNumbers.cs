@@ -25,19 +25,6 @@ namespace NumeroAmstrong
                 x = x / 10;
             }
             return n;
-        }
-        //Método para calcular os números de Amstrong de 0 a 10000 usando o método de extensão IsAmstrong
-        public void Armstrong10000()
-        {
-            Console.WriteLine("Números de Armstrong entre 1 e 10000 \n");
-            for (int numero = 1; numero <= 10000; numero++)
-            {
-                if (IsAmstrong.IsArmstrong(this, numero))
-                {
-                    Console.WriteLine($"{numero}");
-                }
-            }
-        }
+        }        
     }
-
 }
