@@ -1,5 +1,6 @@
 ﻿using Cliente.model;
 using Cliente.view;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -11,15 +12,15 @@ namespace Cliente.controller
         {
             Interface @interface = new();
             Client client = new();            
-            Data? data = new Data();
+            Data? data = new();
 
             var path = "C:\\Users\\silve\\source\\repos\\ExerciciosRevisaoParte3\\Cliente\\data\\clientes.json";
 
             string jsonString;
             
-
             jsonString = File.ReadAllText(path);
 
+            //Deserializa o Json, adiciona cada cliente a uma lista "clients" e execula o validador mestre sob a lista
             var clients = JsonSerializer.Deserialize<List<Data>>(jsonString);
             data = clients?.First();
             for (int i = 0; i < clients?.Count; i++)
@@ -28,7 +29,7 @@ namespace Cliente.controller
             }
             ClientController.ValidatorMaster(clients, @interface, client);
         }
-
+        
         public static void SerializeErrorsJson(Data rclientsData, Erro erro) 
         {
             List<Erro> list= new List<Erro> {erro};

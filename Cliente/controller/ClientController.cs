@@ -1,5 +1,6 @@
 ﻿using Cliente.model;
 using Cliente.view;
+using System.Collections.Generic;
 
 namespace Cliente.controller
 {
@@ -20,7 +21,7 @@ namespace Cliente.controller
                 if (e.Nome != null || e.Cpf != null || e.Dt_nascimento != null || e.Renda_mensal != null || e.Estado_civil != null || e.Dependentes != null)
                 {
                     SerializationController.SerializeErrorsJson(r, e);
-                }             
+                }               
             }
         }
 
