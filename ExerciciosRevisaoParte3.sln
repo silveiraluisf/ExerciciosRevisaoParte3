@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliente", "Cliente\Cliente.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndiceRemissivo", "IndiceRemissivo\IndiceRemissivo.csproj", "{A0482F0B-569F-4ABF-878D-DD3A17BB5B73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeroAmstrong", "NumeroAmstrong\NumeroAmstrong.csproj", "{C05B98F0-FAF2-4608-A767-2F123C89F911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A0482F0B-569F-4ABF-878D-DD3A17BB5B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0482F0B-569F-4ABF-878D-DD3A17BB5B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0482F0B-569F-4ABF-878D-DD3A17BB5B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C05B98F0-FAF2-4608-A767-2F123C89F911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05B98F0-FAF2-4608-A767-2F123C89F911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05B98F0-FAF2-4608-A767-2F123C89F911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05B98F0-FAF2-4608-A767-2F123C89F911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
