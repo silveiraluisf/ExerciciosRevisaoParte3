@@ -1,12 +1,12 @@
-﻿namespace RemoveRepetidos
+﻿using System.Runtime.CompilerServices;
+
+namespace RemoveRepetidos
 {
     public static class RemoveRepeatedClass
-    {        
-        public static void RemoveRepeated<T>(this List<T> entity)
+    {
+        public static List<T> ConvertingToHashSet<T>(this List<T> list)
         {
-            Console.WriteLine($"{entity}");
-            List<T> noDupes = entity.Distinct().ToList();
-            Console.WriteLine($"{noDupes}");
+            return list.ToHashSet().ToList();
         }
     }
 }

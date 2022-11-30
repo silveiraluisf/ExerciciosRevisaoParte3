@@ -1,9 +1,8 @@
-﻿using System.Collections;
-
-namespace RemoveRepetidos
+﻿namespace RemoveRepetidos
 {
-    public class GenericList<T>
+    public class MyList<T>
     {
-        private ArrayList alist = new ArrayList();
+        public MyList() => ListWithDuplicates = new List<T>();
+        public List<T> ListWithDuplicates { get; set; }
     }
 }
