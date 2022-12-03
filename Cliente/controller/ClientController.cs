@@ -8,10 +8,11 @@ namespace Cliente.controller
     {
         public static void ValidatorMaster(List<Data> clients, Interface a, Client c)
         {
+            List<RootErros> errosList = new List<RootErros> { };
             for (int i = 0; i < clients?.Count; i++)
             {
                 Erro e = new();
-                Data r = clients[i];
+                Data r = clients[i];               
                 NameValidate(a, c, r, e);
                 CPFValidate(a, c, r, e);
                 BirthDateValidate(a, c, r, e);
@@ -20,9 +21,11 @@ namespace Cliente.controller
                 DependentsValidate(a, c, r, e);
                 if (e.Nome != null || e.Cpf != null || e.Dt_nascimento != null || e.Renda_mensal != null || e.Estado_civil != null || e.Dependentes != null)
                 {
-                    SerializationController.SerializeErrorsJson(r, e);
+                    SerializationController.createRootErros(r, e, errosList);
                 }               
             }
+            var fileName = "erros.json";
+            SerializationController.SerializeJson(errosList, fileName);
         }
 
         public static void NameValidate(Interface a, Client c, Data r, Erro e)

@@ -30,30 +30,22 @@ namespace Cliente.controller
             ClientController.ValidatorMaster(clients, @interface, client);
         }
         
-        public static void SerializeErrorsJson(Data rclientsData, Erro erro) 
+        public static void createRootErros(Data rclientsData, Erro erro, List<RootErros> errosList) 
         {
+            //cria o objeto da classe RootErros com base nas validações feitas no client controller
             List<Erro> list= new List<Erro> {erro};
             RootErros root = new()
             {
                 Dados = rclientsData,
                 Erros = list,
             };
-            addRootErrors(root);
-            //var fileName = "erros.json";
-            //PrettyWrite(root, fileName);
-        }
-        public static void addRootErrors(RootErros r)
-        {
-            List<RootErros> errosList = new List<RootErros> { r };
-            errosList.Add(r);
-            var fileName = "erros.json";
-            PrettyWrite(errosList, fileName);
+            errosList.Add(root);
         }
 
         private static readonly JsonSerializerOptions _options =
         new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
-        public static void PrettyWrite(List<RootErros> rootErros, string fileName)
+        public static void SerializeJson(List<RootErros> rootErros, string fileName)
         {
             var options = new JsonSerializerOptions(_options)
             {
