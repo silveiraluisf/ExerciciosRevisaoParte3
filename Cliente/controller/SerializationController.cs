@@ -32,7 +32,7 @@ namespace Cliente.controller
         
         public static void createRootErros(Data rclientsData, Erro erro, List<RootErros> errosList) 
         {
-            //cria o objeto da classe RootErros com base nas validações feitas no client controller
+            //cria o objeto da classe RootErros com base nas validações feitas no client controller e adiciona a uma lista
             List<Erro> list= new List<Erro> {erro};
             RootErros root = new()
             {
@@ -47,6 +47,7 @@ namespace Cliente.controller
 
         public static void SerializeJson(List<RootErros> rootErros, string fileName)
         {
+            //serializa a lista de objetos da classe RootErros, que contem os dados do cliente e a mensagem de erro
             var options = new JsonSerializerOptions(_options)
             {
                 WriteIndented = true
