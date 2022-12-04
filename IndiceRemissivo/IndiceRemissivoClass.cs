@@ -1,4 +1,7 @@
-﻿using System.Reflection.Metadata;
+﻿using System.ComponentModel;
+using System.Diagnostics.Metrics;
+using System.Linq;
+using System.Reflection.Metadata;
 
 namespace IndiceRemissivo
 {
@@ -45,46 +48,55 @@ namespace IndiceRemissivo
             }
         }
 
-
         //Tentativa de fazer a função mostrar as linhas em que as palavras aparecem usando o RealAllLines e Dictionary com Value contendo mais de um argumento (nº de ocorrencias da palavra e linha)
 
         public static void IndiceRemissivoComContagemLinha(string pathTXT)
-        {      
-            Dictionary<string, Tuple<int, int>> stats = new();
+        {
+            List<Word> statsList = new();
+            
             string[] lines = File.ReadAllLines(pathTXT);
             char[] chars = { ' ', '.', ',', ';', ':', '?', '<', '>', '\\', '/', '|', '~', '^', '´', '`', '[', ']', '{', '}', '‘', '“', '!', '@', '#', '$', '%', '&', '&', '(', ')', '_', '+', '=', '\n', '\r' };
-            int counter = 0;
-          
+            int counter = 1;
             foreach (string line in lines)
-            {
+            {             
                 string[] words = line.Split(chars);
-                counter++;
                 int minWordLength = 2;
-                
+                counter +=1;
                 foreach (string word in words)
                 {
-                    string w = word.Trim().ToUpper();
-                    if (w.Length > minWordLength)
+                    Word w = new();
+                    w.Text = word;
+                    
+                    if (w.Text.Length > minWordLength)
                     {
-                        if (!stats.ContainsKey(w))
+                        foreach (Word t in statsList)
                         {
-                            stats.Add(w, new Tuple<int, int>(1, counter));                          
-                        }
-                        else
-                        {
-                            stats[w] = new Tuple<int, int>( 1 , counter); 
+                            if (w.Text.Equals(t.Text))
+                            {
+                                w.Occurences += 1;
+                                w.LinesNumbers?.Add(counter);
+                                //Console.WriteLine(w.LinesNumbers);
+                                //statsList.Add(w);
+                            }
+
+                            else
+                            {
+                                w.LinesNumbers?.Add(counter);
+                                w.Occurences += 1;
+                                statsList.Add(w);                               
+                            }
                         }
                     }
                 }
             }
-            var ordenerStats = stats.OrderBy(x => x.Key);
-            ImprimeComLinha(ordenerStats);          
+            //List<Word> ordenerStats = (List<Word>)statsList.OrderBy(x => x.Text);
+            ImprimeComLinha(statsList);          
         }
-        public static void ImprimeComLinha(IOrderedEnumerable<KeyValuePair<string, Tuple<int, int>>> a)
+        public static void ImprimeComLinha(List<Word> ordenerStats)
         {            
-            foreach (var pair in a)
+            foreach (Word w in ordenerStats)
             {
-                Console.WriteLine("{0} ({1})", pair.Key, pair.Value);
+                Console.WriteLine($"{w.Text} ({w.Occurences}) {w.LinesNumbers} ");
             }
         }
     }

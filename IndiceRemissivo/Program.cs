@@ -15,7 +15,8 @@ namespace IndiceRemissivo
             {
                 throw new Exception("Insira um diretório válido!");
             }
-            IndiceRemissivoClass.IndiceRemissivo(pathTXT);
+            //IndiceRemissivoClass.IndiceRemissivo(pathTXT);
+            IndiceRemissivoClass.IndiceRemissivoComContagemLinha(pathTXT);
         }
     }
 }
