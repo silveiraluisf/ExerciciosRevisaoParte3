@@ -17,12 +17,12 @@ public class Program
 
         //criação da lista de clientes e objetos da classe ClientSimplified para teste
         var testListClient = new MyList<ClientSimplified>();
-        ClientSimplified a = new("a", 123123123);
-        ClientSimplified b = new("b", 456456456);
-        ClientSimplified c = new("c", 789789789);
-        ClientSimplified d = new("a", 123123123);
-        ClientSimplified e = new("e", 123456789);
-        testListClient.ListWithDuplicates = new List<ClientSimplified>() { a, b, c, d, e };
+        ClientSimplified a = new() { Name= "a", CPF = 123123123, };
+        ClientSimplified b = new() { Name = "b", CPF = 456456456, };
+        ClientSimplified c = new() { Name = "c", CPF = 789789789, };
+        ClientSimplified d = new() { Name = "d", CPF = 123123123, };
+        ClientSimplified e = new() { Name = "e", CPF = 123456789, };
+        testListClient.ListWithDuplicates = new List<ClientSimplified>() { a, b, c, d, e };   
 
         //execução do método para remover os itens repetidos
         Console.WriteLine("---- REMOVEDOR DE OBJETOS REPETIDOS NA LISTA ----");
@@ -40,8 +40,15 @@ public class Program
         Console.WriteLine("Lista = {0}", string.Join(",", testListString.ListWithDuplicates.ConvertingToHashSet()));
 
         Console.WriteLine("\nLISTA INICIAL COM OBJETOS CLIENTES REPETIDOS:");
-        
+        foreach (ClientSimplified client in testListClient.ListWithDuplicates)
+        {
+            Console.WriteLine($" Nome:{client.Name}, CPF: {client.CPF}");
+        }
+        testListClient.ListWithDuplicates.RemoveRepeatedClient();
         Console.WriteLine("\nRESULTADO DA LISTA APÓS A REMOÇÃO DOS OBJETOS REPETIDOS:");
-      
+        foreach (ClientSimplified client in testListClient.ListWithDuplicates)
+        {
+            Console.WriteLine($" Nome:{client.Name}, CPF: {client.CPF}");
+        }
     }
 }
