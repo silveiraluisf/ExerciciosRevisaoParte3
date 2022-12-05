@@ -17,7 +17,7 @@ public class Program
 
         //criação da lista de clientes e objetos da classe ClientSimplified para teste
         var testListClient = new MyList<ClientSimplified>();
-        ClientSimplified a = new() { Name= "a", CPF = 123123123, };
+        ClientSimplified a = new() { Name = "a", CPF = 123123123, };
         ClientSimplified b = new() { Name = "b", CPF = 456456456, };
         ClientSimplified c = new() { Name = "c", CPF = 789789789, };
         ClientSimplified d = new() { Name = "d", CPF = 123123123, };
@@ -44,9 +44,9 @@ public class Program
         {
             Console.WriteLine($" Nome:{client.Name}, CPF: {client.CPF}");
         }
-        testListClient.ListWithDuplicates.RemoveRepeatedClient();
+        var newTestListClient = testListClient.ListWithDuplicates.RemoveRepeatedClient();
         Console.WriteLine("\nRESULTADO DA LISTA APÓS A REMOÇÃO DOS OBJETOS REPETIDOS:");
-        foreach (ClientSimplified client in testListClient.ListWithDuplicates)
+        foreach (ClientSimplified client in newTestListClient)
         {
             Console.WriteLine($" Nome:{client.Name}, CPF: {client.CPF}");
         }

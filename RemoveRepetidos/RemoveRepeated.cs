@@ -8,22 +8,22 @@ namespace RemoveRepetidos
         {
             return list.ToHashSet().ToList();
         }
-        public static List<ClientSimplified> RemoveRepeatedClient(this List<ClientSimplified> clientList)
+        public static List<ClientSimplified> RemoveRepeatedClient(this List<ClientSimplified> listWithDuplicates)
         {
-            foreach (ClientSimplified clientA in clientList.ToList())
+            var newClientList = new List<ClientSimplified>();
+            listWithDuplicates = listWithDuplicates.OrderBy(x => x.CPF).ToList();
+            
+            ClientSimplified? element = default;
+            
+            foreach (ClientSimplified result in listWithDuplicates)
             {
-                foreach (ClientSimplified clientB in clientList.ToList())
+                if(!result.CPF.Equals(element?.CPF))
                 {
-                    if(!(clientA == clientB))
-                    {
-                        if (clientA.CPF.Equals(clientB.CPF))
-                        {
-                            clientList.Remove(clientB);
-                        }
-                    }
-                }                
+                    newClientList.Add(result);
+                    element = result;
+                }        
             }
-            return clientList;
+            return newClientList;
         }
     }
 }
